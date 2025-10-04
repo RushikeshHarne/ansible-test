@@ -17,3 +17,12 @@
         # Optional: Add SSH public key for remote access
         # ssh_key_file: "/home/{{ new_username }}/.ssh/id_rsa.pub"
         # generate_ssh_key: yes
+
+    - name: create the file with user '{{ new_username }}' 
+      file: 
+      path: /home/'{{ new_username }}'/don
+      state: touch
+        owner: "{{ new_username }}"
+        group: "{{ new_username }}"
+        mode: '0644' 
+        content: "this just trial via jenkins we can assign the playbook task or not trigger from github"
