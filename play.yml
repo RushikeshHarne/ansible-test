@@ -17,11 +17,11 @@
 
     - name: Create the file for user '{{ new_username }}' with content
       # CHANGE 1: Use the 'ansible.builtin.copy' module instead of 'ansible.builtin.file'
-      ansible.builtin.copy:
+      ansible.builtin.file:
         # CHANGE 2: 'path' is usually called 'dest' in the copy module, 
         # but 'path' is aliased and works. Using 'dest' for clarity.
         dest: "/home/{{ new_username }}/don" 
-        state: file                                 # Use 'file' state if needed, though 'copy' implies it
+        #state: file                                 # Use 'file' state if needed, though 'copy' implies it
         owner: "{{ new_username }}"
         group: "{{ new_username }}"
         mode: '0644'
