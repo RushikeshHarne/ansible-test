@@ -20,8 +20,8 @@
 
     - name: create the file with user '{{ new_username }}' 
       file: 
-      path: /home/'{{ new_username }}'/don
-      state: touch
+        path: /home/'{{ new_username }}'/don
+        state: touch
         owner: "{{ new_username }}"
         group: "{{ new_username }}"
         mode: '0644' 
