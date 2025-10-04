@@ -1,0 +1,19 @@
+- name: Create new user on master server
+  hosts: all # Refers to the alias in your hosts file (or inventory)
+  become: yes          # Run tasks with root/sudo privileges
+  tasks:
+    - name: Ensure '{{ new_username }}' group exists
+      ansible.builtin.group:
+        name: "{{ new_username }}"
+        state: present
+
+    - name: Create the user '{{ new_username }}' with password and shell
+      ansible.builtin.user:
+        name: "{{ new_username }}"
+        password: "{{ user_password | password_hash('sha512') }}" # Hash the password for security
+        groups: "{{ new_username }}"
+        shell: /bin/bash
+        state: present
+        # Optional: Add SSH public key for remote access
+        # ssh_key_file: "/home/{{ new_username }}/.ssh/id_rsa.pub"
+        # generate_ssh_key: yes
