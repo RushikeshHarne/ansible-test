@@ -15,10 +15,13 @@
         shell: /bin/bash
         state: present
 
-    - name: create the file for user '{{ new_username }}'  # Task name corrected for clarity
-      ansible.builtin.file:                          # Corrected: Module name requires a colon and is best fully qualified
-        path: "/home/{{ new_username }}/don"      # Corrected: Path needs quotes and proper variable syntax
-        state: touch
+ - name: Create the file for user '{{ new_username }}' with content
+      # CHANGE 1: Use the 'ansible.builtin.copy' module instead of 'ansible.builtin.file'
+      ansible.builtin.copy:
+        # CHANGE 2: 'path' is usually called 'dest' in the copy module, 
+        # but 'path' is aliased and works. Using 'dest' for clarity.
+        dest: "/home/{{ new_username }}/don" 
+        state: file                                   # Use 'file' state if needed, though 'copy' implies it
         owner: "{{ new_username }}"
         group: "{{ new_username }}"
         mode: '0644'
