@@ -15,7 +15,7 @@
         shell: /bin/bash
         state: present
 
- - name: Create the file for user '{{ new_username }}' with content
+    - name: Create the file for user '{{ new_username }}' with content
       # CHANGE 1: Use the 'ansible.builtin.copy' module instead of 'ansible.builtin.file'
       ansible.builtin.copy:
         # CHANGE 2: 'path' is usually called 'dest' in the copy module, 
