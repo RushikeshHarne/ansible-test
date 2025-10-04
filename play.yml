@@ -1,6 +1,6 @@
 - name: Create new user on master server
-  hosts: all # Refers to the alias in your hosts file (or inventory)
-  become: yes          # Run tasks with root/sudo privileges
+  hosts: all
+  become: yes
   tasks:
     - name: Ensure '{{ new_username }}' group exists
       ansible.builtin.group:
@@ -10,19 +10,16 @@
     - name: Create the user '{{ new_username }}' with password and shell
       ansible.builtin.user:
         name: "{{ new_username }}"
-        password: "{{ user_password | password_hash('sha512') }}" # Hash the password for security
+        password: "{{ user_password | password_hash('sha512') }}"
         groups: "{{ new_username }}"
         shell: /bin/bash
         state: present
-        # Optional: Add SSH public key for remote access
-        # ssh_key_file: "/home/{{ new_username }}/.ssh/id_rsa.pub"
-        # generate_ssh_key: yes
 
-    - name: create the file with user '{{ new_username }}' 
-      file: 
-        path: /home/'{{ new_username }}'/don
+    - name: create the file for user '{{ new_username }}'  # Task name corrected for clarity
+      ansible.builtin.file:                          # Corrected: Module name requires a colon and is best fully qualified
+        path: "/home/{{ new_username }}/don"      # Corrected: Path needs quotes and proper variable syntax
         state: touch
         owner: "{{ new_username }}"
         group: "{{ new_username }}"
-        mode: '0644' 
+        mode: '0644'
         content: "this just trial via jenkins we can assign the playbook task or not trigger from github"
