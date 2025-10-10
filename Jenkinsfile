@@ -4,7 +4,7 @@ pipeline {
     
     // Define parameters for a parameterized build
     parameters {
-        string(name: 'NEW_USERNAME', defaultValue: 'test2', description: 'The username to create')
+        string(name: 'NEW_USERNAME', defaultValue: 'test3', description: 'The username to create')
         // Use a password parameter for secure input
         password(name: 'USER_PASSWORD', defaultValue: 'root', description: 'The password for the new user') 
     }
