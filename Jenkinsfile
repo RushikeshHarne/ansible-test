@@ -6,7 +6,7 @@ pipeline {
     parameters {
         string(name: 'NEW_USERNAME', defaultValue: 'rucha', description: 'The username to create')
         // Use a password parameter for secure input
-        password(name: 'USER_PASSWORD', defaultValue: 'root', description: 'The password for the new user') 
+        password(name: 'USER_PASSWORD', defaultValue: 'rucha', description: 'The password for the new user') 
     }
 
     stages {
